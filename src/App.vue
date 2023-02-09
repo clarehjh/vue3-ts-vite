@@ -1,6 +1,13 @@
+<!--
+ * @Description:
+ * @version:
+ * @Author: Huangjiahui
+ * @Date: 2023-02-06 16:11:28
+ * @LastEditors: Huangjiahui
+ * @LastEditTime: 2023-02-09 10:05:38
+-->
 <template>
   <div class="app">
-    <h2>App</h2>
     <router-view></router-view>
   </div>
 </template>
