@@ -4,7 +4,7 @@
  * @Author: Huangjiahui
  * @Date: 2023-02-09 09:36:47
  * @LastEditors: Huangjiahui
- * @LastEditTime: 2023-02-09 14:56:56
+ * @LastEditTime: 2023-02-11 17:47:36
 -->
 <template>
   <div class="login-panel">
@@ -40,18 +40,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { localCache } from '@/utils/localCache'
+import { ref, watch } from 'vue'
 import Account from './account.vue'
 import Phone from './phone.vue'
 
-const checked = ref(false)
+const checked = ref<boolean>(localCache.get('checked' ?? false))
+watch(checked, (newValue) => {
+  localCache.set('checked', newValue)
+})
 const activeName = ref('account')
 const accountRef = ref<InstanceType<typeof Account>>()
 
 function login() {
   if (activeName.value === 'account') {
-    console.log(accountRef)
-    accountRef.value?.loginAction()
+    accountRef.value?.loginAction(checked.value)
   } else {
     console.log('另一种手机方式')
   }

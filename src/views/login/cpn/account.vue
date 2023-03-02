@@ -4,7 +4,7 @@
  * @Author: Huangjiahui
  * @Date: 2023-02-09 09:37:33
  * @LastEditors: Huangjiahui
- * @LastEditTime: 2023-02-09 14:55:56
+ * @LastEditTime: 2023-02-11 17:49:13
 -->
 <template>
   <div class="account">
@@ -19,7 +19,7 @@
         <el-input v-model="formLabelAlign.name" />
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="formLabelAlign.password" password />
+        <el-input v-model="formLabelAlign.password" show-password />
       </el-form-item>
     </el-form>
   </div>
@@ -29,9 +29,11 @@
 import { reactive, ref } from 'vue'
 import useLoginStore from '@/store/modules/login'
 import { type ElForm, type FormRules, type FormInstance, ElMessage } from 'element-plus'
+import { localCache } from '@/utils/localCache'
+import { CACHE_NAME, CACHE_PASSWORD } from '@/global/constants'
 const formLabelAlign = reactive({
-  name: '',
-  password: ''
+  name: localCache.get(CACHE_NAME) ?? '',
+  password: localCache.get(CACHE_PASSWORD) ?? ''
 })
 // 2.定义校验规则
 const accountRules: FormRules = {
@@ -58,14 +60,19 @@ const accountRules: FormRules = {
 const formRef = ref<InstanceType<typeof ElForm>>()
 const loginStore = useLoginStore()
 
-function loginAction() {
+function loginAction(checked: boolean) {
   formRef.value?.validate((vaild) => {
     if (vaild) {
       const name = formLabelAlign.name
       const password = formLabelAlign.password
 
       //发送请求
-      loginStore.loginAccount({ name, password })
+      loginStore.loginAccount({ name, password }).then((res) => {
+        if (checked) {
+          localCache.set(CACHE_NAME, name)
+          localCache.set(CACHE_PASSWORD, password)
+        }
+      })
     } else {
       ElMessage.error('请输入正确格式')
     }

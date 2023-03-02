@@ -2,7 +2,8 @@ import axios from 'axios'
 import type { AxiosInstance } from 'axios'
 import type { newRequestConfig } from './type'
 import { BASE_URL, TIME_OUT } from '../config'
-
+import { localCache } from '@/utils/localCache'
+import { LOGIN_TOKEN } from '@/global/constants'
 // 拦截器: 蒙版Loading/token/修改配置
 
 /**
@@ -53,6 +54,7 @@ class HRequest {
   request<T = any>(config: newRequestConfig<T>) {
     if (config.interceptors?.requestSuccessFn) {
       config = config.interceptors.requestSuccessFn(config)
+      console.log(config)
     }
 
     return new Promise<T>((resolve, reject) => {
@@ -84,4 +86,18 @@ class HRequest {
   }
 }
 
-export default new HRequest({ baseURL: BASE_URL, timeout: TIME_OUT })
+export default new HRequest({
+  baseURL: BASE_URL,
+  timeout: TIME_OUT,
+  interceptors: {
+    requestSuccessFn: (config) => {
+      // 每一个请求都自动携带token
+      const token = localCache.get(LOGIN_TOKEN)
+      if (config.headers && token) {
+        // 类型缩小
+        config.headers.Authorization = 'Bearer ' + token
+      }
+      return config
+    }
+  }
+})
