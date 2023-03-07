@@ -20,9 +20,9 @@
         <span class="user-info">
           <el-avatar
             :size="30"
-            src="https://upload.jianshu.io/users/upload_avatars/1102036/c3628b478f06.jpeg"
+            src="https://img0.baidu.com/it/u=3030925301,3445191912&fm=253&fmt=auto&app=138&f=JPEG?w=300&h=300"
           />
-          <span class="name">coderwhy</span>
+          <span class="name">clare</span>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
@@ -48,11 +48,11 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { LOGIN_TOKEN } from '@/global/constants'
-import { localCache } from '@/utils/cache'
+import { localCache } from '@/utils/localCache'
 
 const router = useRouter()
 function handleExitClick() {
-  localCache.removeCache(LOGIN_TOKEN)
+  localCache.remove(LOGIN_TOKEN)
   router.push('/login')
 }
 </script>

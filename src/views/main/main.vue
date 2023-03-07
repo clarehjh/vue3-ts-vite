@@ -4,17 +4,17 @@
  * @Author: Huangjiahui
  * @Date: 2023-02-07 11:08:25
  * @LastEditors: Huangjiahui
- * @LastEditTime: 2023-03-03 18:06:53
+ * @LastEditTime: 2023-03-07 17:49:34
 -->
 <template>
   <div class="main">
     <el-container class="main-content">
       <el-aside :width="isFold ? '60px' : '210px'">
-        <!-- <main-menu :is-fold="isFold"></main-menu> -->
+        <main-menu :is-fold="isFold"></main-menu>
       </el-aside>
       <el-container>
         <el-header height="50px">
-          <main-header @fold-change="handleChang"></main-header>
+          <main-header @fold-change="handleFoldChange"></main-header>
         </el-header>
         <el-main>
           <router-view></router-view>
@@ -24,8 +24,14 @@
   </div>
 </template>
 
-<script setup>
-import { reactive } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
+import MainMenu from '@/components/main-menu/main-menu.vue'
+import MainHeader from '@/components/main-header/main-header.vue'
+const isFold = ref(false)
+function handleFoldChange(flag: boolean) {
+  isFold.value = flag
+}
 </script>
 
 <style lang="less" scoped>

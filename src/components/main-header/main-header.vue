@@ -1,8 +1,16 @@
+<!--
+ * @Description:
+ * @version:
+ * @Author: Huangjiahui
+ * @Date: 2023-03-03 17:03:48
+ * @LastEditors: Huangjiahui
+ * @LastEditTime: 2023-03-03 18:07:04
+-->
 <template>
   <div class="main-header">
     <div class="menu-icon" @click="handleMenuIconClick">
-      <el-icon size="20px">
-        <component :is="isFold ? 'Expand' : 'Fold'"></component>
+      <el-icon size="28px">
+        <component :is="isFold ? 'Expand' : 'Fold'" />
       </el-icon>
     </div>
     <div class="content">
@@ -12,9 +20,9 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import HeaderInfo from './cpns/header-info'
+<script setup lang="ts">
+import { ref,defineEmits } from 'vue'
+import HeaderInfo from './c-cpns/header-info.vue'
 
 // 0.内部自定义事件
 const emit = defineEmits(['foldChange'])
@@ -30,4 +38,25 @@ function handleMenuIconClick() {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.main-header {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+
+  .menu-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    padding: 0 18px;
+  }
+}
+</style>
