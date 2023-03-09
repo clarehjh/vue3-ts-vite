@@ -4,7 +4,7 @@
  * @Author: Huangjiahui
  * @Date: 2023-02-09 14:00:38
  * @LastEditors: Huangjiahui
- * @LastEditTime: 2023-02-12 15:22:45
+ * @LastEditTime: 2023-03-09 15:13:27
  */
 import { defineStore } from 'pinia'
 import type { IAccount } from '@/types'
@@ -12,6 +12,7 @@ import { accountLogin, getUserInfoById, getUserMenusByRoleId } from '@/service'
 import { localCache } from '@/utils/localCache'
 import router from '@/router'
 import { LOGIN_TOKEN } from '@/global/constants'
+import { mapMenusToRoutes } from '@/utils/mapMenus'
 
 interface ILoginState {
   token: string
@@ -47,7 +48,27 @@ const useLoginStore = defineStore('login', {
       localCache.set('userInfo', userInfo)
       localCache.set('userMenus', userMenus)
 
+      //5.添加动态路由
+      const routes = mapMenusToRoutes(userMenus)
+      routes.forEach((route) => router.addRoute('main', route))
+
       router.push('/main')
+    },
+
+    //1.用户进行刷新默认加载数据
+    loadLocalCacheAction() {
+      const token = localCache.get(LOGIN_TOKEN)
+      const userInfo = localCache.get('userInfo')
+      const userMenus = localCache.get('userMenus')
+      if (token && userInfo && userMenus) {
+        this.token = token
+        this.userInfo = userInfo
+        this.userMenus = userMenus
+
+        // 2.动态添加路由
+        const routes = mapMenusToRoutes(userMenus)
+        routes.forEach((route) => router.addRoute('main', route))
+      }
     }
   }
 })

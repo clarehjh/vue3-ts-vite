@@ -3,13 +3,13 @@
     <!-- 1.logo -->
     <div class="logo">
       <img class="img" src="@/assets/img/logo.svg" alt="" />
-      <h2 v-show="!isFold" class="title">弘源管理系统</h2>
+      <h2 v-show="!isFold" class="title">后台管理系统</h2>
     </div>
 
     <!-- 2.menu -->
     <div class="menu">
       <el-menu
-        default-active="3"
+        :default-active="defaultActive"
         :collapse="isFold"
         text-color="#b7bdc3"
         active-text-color="#fff"
@@ -39,9 +39,11 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import useLoginStore from '@/store/modules/login'
-import { useRouter } from 'vue-router'
-import { storeToRefs } from 'pinia'
+import { useRoute, useRouter } from 'vue-router'
+import { mapPathToMenu } from '@/utils/mapMenus'
+
 // 0.定义props
 defineProps({
   isFold: {
@@ -52,7 +54,7 @@ defineProps({
 
 // 1.获取动态的菜单
 const loginStore = useLoginStore()
-const { userMenus } = storeToRefs(loginStore)
+const userMenus = loginStore.userMenus
 
 // 2.监听item的点击
 const router = useRouter()
@@ -60,6 +62,13 @@ function handleItemClick(item: any) {
   const url = item.url
   router.push(url)
 }
+
+// 3.ElMenu的默认菜单
+const route = useRoute()
+const defaultActive = computed(() => {
+  const pathMenu = mapPathToMenu(route.path, userMenus)
+  return pathMenu.id + ''
+})
 </script>
 <style lang="less" scoped>
 .main-menu {

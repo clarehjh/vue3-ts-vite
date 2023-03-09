@@ -4,7 +4,7 @@
  * @Author: Huangjiahui
  * @Date: 2023-03-03 17:03:48
  * @LastEditors: Huangjiahui
- * @LastEditTime: 2023-03-03 18:07:04
+ * @LastEditTime: 2023-03-09 15:21:29
 -->
 <template>
   <div class="main-header">
@@ -15,14 +15,16 @@
     </div>
     <div class="content">
       <div class="breadcrumb">面包屑</div>
+      <header-crumb />
       <header-info />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref,defineEmits } from 'vue'
+import { ref, defineEmits } from 'vue'
 import HeaderInfo from './c-cpns/header-info.vue'
+import HeaderCrumb from './c-cpns/header-crumb.vue'
 
 // 0.内部自定义事件
 const emit = defineEmits(['foldChange'])

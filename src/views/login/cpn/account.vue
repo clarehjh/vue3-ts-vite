@@ -4,7 +4,7 @@
  * @Author: Huangjiahui
  * @Date: 2023-02-09 09:37:33
  * @LastEditors: Huangjiahui
- * @LastEditTime: 2023-02-11 17:49:13
+ * @LastEditTime: 2023-03-09 15:36:25
 -->
 <template>
   <div class="account">
@@ -71,6 +71,9 @@ function loginAction(checked: boolean) {
         if (checked) {
           localCache.set(CACHE_NAME, name)
           localCache.set(CACHE_PASSWORD, password)
+        } else {
+          localCache.remove(CACHE_NAME)
+          localCache.remove(CACHE_PASSWORD)
         }
       })
     } else {

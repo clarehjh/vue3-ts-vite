@@ -3,7 +3,7 @@ import App from './App.vue'
 import './assets/css/index.less'
 import 'normalize.css'
 import router from './router'
-import pinia from './store'
+import store from './store'
 import registerIcons from './global/register-icons'
 
 // 0.针对ElMessage和ElLoading等组件引入样式
@@ -28,4 +28,4 @@ import registerIcons from './global/register-icons'
 // app.component(ElButton.name, ElButton)
 
 // 3.图标的全局注册
-createApp(App).use(pinia).use(registerIcons).use(router).mount('#app')
+createApp(App).use(store).use(registerIcons).use(router).mount('#app')
