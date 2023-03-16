@@ -11,5 +11,3 @@ export function getEntireDepartments() {
     url: '/department/list'
   })
 }
-
-

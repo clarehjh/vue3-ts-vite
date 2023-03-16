@@ -4,7 +4,7 @@
  * @Author: Huangjiahui
  * @Date: 2023-02-07 11:45:57
  * @LastEditors: Huangjiahui
- * @LastEditTime: 2023-02-07 13:58:02
+ * @LastEditTime: 2023-03-15 16:24:23
  */
 // 1.区分开发环境和生产环境
 // export const BASE_URL = 'http://coderwhy.dev:8000'
@@ -20,10 +20,10 @@
 let BASE_URL = ''
 if (import.meta.env.PROD) {
   // 生产环境
-  BASE_URL = 'http://152.136.185.210:4000'
+  BASE_URL = 'http://152.136.185.210:5000'
 } else {
   // 开发环境
-  BASE_URL = 'http://152.136.185.210:5000'
+  BASE_URL = 'http://coderwhy.org/test'
 }
 
 // console.log(BASE_URL)

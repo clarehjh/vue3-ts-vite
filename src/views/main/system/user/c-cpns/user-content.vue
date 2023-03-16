@@ -70,7 +70,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import useSystemStore from '@/store/moudles/system'
+import userStore from '@/store/modules/user'
 import { formatUTC } from '@/utils/format'
 import { ref } from 'vue'
 
@@ -78,7 +78,7 @@ import { ref } from 'vue'
 const emit = defineEmits(['newClick', 'editClick'])
 
 // 1.发起action，请求usersList的数据
-const systemStore = useSystemStore()
+const systemStore = userStore()
 const currentPage = ref(1)
 const pageSize = ref(10)
 fetchUserListData()

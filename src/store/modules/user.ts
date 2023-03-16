@@ -38,6 +38,7 @@ const userStore = defineStore('system', {
       this.entireRoles = rolesResult.data.list
       this.entireDepartments = departmentsResult.data.list
     },
+
     async deleteUserByIdAction(id: number) {
       // 1.删除数据操作
       const deleteResult = await deleteUserById(id)
@@ -54,6 +55,7 @@ const userStore = defineStore('system', {
       // 2.重新请求新的数据
       this.postUsersListAction({ offset: 0, size: 10 })
     },
+
     async editUserDataAction(id: number, userInfo: any) {
       // 1.更新用户的数据
       const editResult = await editUserData(id, userInfo)

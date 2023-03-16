@@ -15,11 +15,7 @@
             <el-input v-model="formData.leader" placeholder="请输入部门领导" />
           </el-form-item>
           <el-form-item label="选择部门" prop="parentId">
-            <el-select
-              v-model="formData.parentId"
-              placeholder="请选择部门"
-              style="width: 100%"
-            >
+            <el-select v-model="formData.parentId" placeholder="请选择部门" style="width: 100%">
               <template v-for="item in entireDepartments" :key="item.id">
                 <el-option :label="item.name" :value="item.id" />
               </template>
@@ -30,9 +26,7 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="handleConfirmClick">
-            确定
-          </el-button>
+          <el-button type="primary" @click="handleConfirmClick"> 确定 </el-button>
         </span>
       </template>
     </el-dialog>
@@ -41,9 +35,8 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import useMainStore from '@/store/moudles/main'
+import userStore from '@/store/modules/user'
 import { storeToRefs } from 'pinia'
-import useSystemStore from '@/store/main/system/system'
 
 // 1.定义内部的属性
 const dialogVisible = ref(false)
@@ -56,8 +49,7 @@ const isNewRef = ref(true)
 const editData = ref()
 
 // 2.获取roles/departments数据
-const mainStore = useMainStore()
-const systemStore = useSystemStore()
+const mainStore = userStore()
 const { entireDepartments } = storeToRefs(mainStore)
 
 // 2.定义设置dialogVisible方法
@@ -84,10 +76,10 @@ function handleConfirmClick() {
   dialogVisible.value = false
   if (!isNewRef.value && editData.value) {
     // 编辑用户的数据
-    systemStore.editPageDataAction('department', editData.value.id, formData)
+    mainStore.editPageDataAction('department', editData.value.id, formData)
   } else {
     // 创建新的部门
-    systemStore.newPageDataAction('department', formData)
+    mainStore.newPageDataAction('department', formData)
   }
 }
 
