@@ -4,7 +4,7 @@
  * @Author: Huangjiahui
  * @Date: 2023-02-07 11:45:57
  * @LastEditors: Huangjiahui
- * @LastEditTime: 2023-03-15 16:24:23
+ * @LastEditTime: 2023-06-27 17:06:47
  */
 // 1.区分开发环境和生产环境
 // export const BASE_URL = 'http://coderwhy.dev:8000'
@@ -23,7 +23,7 @@ if (import.meta.env.PROD) {
   BASE_URL = 'http://152.136.185.210:5000'
 } else {
   // 开发环境
-  BASE_URL = 'http://coderwhy.org/test'
+  BASE_URL = 'https://www.fastmock.site/mock/56abcfccf5befa04922f08450a903bf5/api'
 }
 
 // console.log(BASE_URL)

@@ -3,10 +3,11 @@
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "auto-imports.d.ts", "components.d.ts"],
   "compilerOptions": {
     "baseUrl": ".",
+    "module": "es2020",
     "paths": {
       "@/*": ["./src/*"]
     },
-    "lib": ["es2017", "dom", "es2015"]
+    "lib": ["es2017", "dom", "es2015", "ESNext"]
     // "types": ["element-plus/global"]
   },
 

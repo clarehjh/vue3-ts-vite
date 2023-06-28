@@ -4,7 +4,7 @@
  * @Author: Huangjiahui
  * @Date: 2023-02-09 09:37:33
  * @LastEditors: Huangjiahui
- * @LastEditTime: 2023-03-09 15:36:25
+ * @LastEditTime: 2023-06-27 17:07:43
 -->
 <template>
   <div class="account">
@@ -38,20 +38,20 @@ const formLabelAlign = reactive({
 // 2.定义校验规则
 const accountRules: FormRules = {
   name: [
-    { required: true, message: '必须输入帐号信息~', trigger: 'blur' },
-    {
-      pattern: /^[a-z0-9]{6,20}$/,
-      message: '必须是6~20数字或字母组成~',
-      trigger: 'blur'
-    }
+    { required: true, message: '必须输入帐号信息~', trigger: 'blur' }
+    // {
+    //   pattern: /^[a-z0-9]{6,20}$/,
+    //   message: '必须是6~20数字或字母组成~',
+    //   trigger: 'blur'
+    // }
   ],
   password: [
-    { required: true, message: '必须输入密码信息~', trigger: 'blur' },
-    {
-      pattern: /^[a-z0-9]{3,}$/,
-      message: '必须是3位以上数字或字母组成',
-      trigger: 'blur'
-    }
+    { required: true, message: '必须输入密码信息~', trigger: 'blur' }
+    // {
+    //   pattern: /^[a-z0-9]{3,}$/,
+    //   message: '必须是3位以上数字或字母组成',
+    //   trigger: 'blur'
+    // }
   ]
 }
 

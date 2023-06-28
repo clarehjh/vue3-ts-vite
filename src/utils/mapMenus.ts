@@ -1,3 +1,11 @@
+/*
+ * @Description:
+ * @version:
+ * @Author: Huangjiahui
+ * @Date: 2023-06-27 15:52:08
+ * @LastEditors: Huangjiahui
+ * @LastEditTime: 2023-06-28 10:32:46
+ */
 import type { RouteRecordRaw } from 'vue-router'
 function loadLocalRoutes() {
   // 1.动态获取所有的路由对象, 放到数组中
