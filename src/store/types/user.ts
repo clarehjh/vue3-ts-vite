@@ -4,7 +4,7 @@
  * @Author: Huangjiahui
  * @Date: 2023-03-09 16:40:58
  * @LastEditors: Huangjiahui
- * @LastEditTime: 2023-03-14 15:46:12
+ * @LastEditTime: 2023-07-03 11:40:58
  */
 export interface IUser {
   id: number
